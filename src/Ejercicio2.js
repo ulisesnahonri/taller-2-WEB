@@ -53,6 +53,10 @@ app.get('/envio/:pais/:peso', (req, res) => {
         const pais = req.params.pais;
         const peso = Number(req.params.peso);
 
+        if (peso < 0) {
+            throw new Error('El peso no puede ser negativo');
+        }
+
         const resultado = calcularEnvio(pais, peso);
 
         res.json(resultado);
